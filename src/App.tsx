@@ -5,7 +5,11 @@ import { APP_TITLE } from "./constant";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PostType } from "./types/Post";
+import useTitle from "./hooks/useTitle";
+import useWidth from "./hooks/useWidth";
 function App() {
+  useTitle("Home");
+  const width = useWidth();
   const {
     data: posts,
     isLoading,
@@ -31,17 +35,21 @@ function App() {
   return (
     <>
       <nav>
-        <ul>
-          <li>
-            <a href="">1</a>
-          </li>
-          <li>
-            <a href="">2</a>
-          </li>
-          <li>
-            <a href="">3</a>
-          </li>
-        </ul>
+        {width > 768 ? (
+          <ul>
+            <li>
+              <a href="">1</a>
+            </li>
+            <li>
+              <a href="">2</a>
+            </li>
+            <li>
+              <a href="">3</a>
+            </li>
+          </ul>
+        ) : (
+          <p>test custom hook width</p>
+        )}
       </nav>
       <Button>Test</Button>
       <Button variant={"ghost"}>Test Ghost</Button>
