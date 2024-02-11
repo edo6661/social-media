@@ -1,0 +1,12 @@
+nav {
+  @apply bg-blue-500;
+  ul {
+    @apply container flex justify-between items-center bg-red-500;
+    li {
+      @apply bg-green-500 w-full;
+      a {
+        @apply text-red-500;
+      }
+    }
+  }
+}
