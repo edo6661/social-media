@@ -1,4 +1,5 @@
 import { UserType } from "./User";
+// * featuring new supreme leader
 
 export interface PostType {
   id: string;
