@@ -1,6 +1,8 @@
 import { UserType } from "./User";
 
 export interface PostType {
+  id: string;
+  body: string;
   _id: string;
   userId: string;
   title: string;
