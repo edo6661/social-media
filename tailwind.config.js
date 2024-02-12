@@ -17,6 +17,24 @@ export const theme = {
     },
   },
   extend: {
+    backgroundColor: {
+      primaryNavy: "#0A2445",
+      primaryWhite: "#EFF1F2",
+      secondaryWhite: "#FDFDFE",
+      primaryInput: "#F2F0EA",
+    },
+    textColor: {
+      primaryTitle: "#2E461C",
+      primaryBlack: "#0C131A",
+      primaryDarkGray: "#B49EA0",
+      primaryBlue: "#18469B",
+      primaryRed: "#EA0601",
+    },
+
+    fontFamily: {
+      mogra: ["Mogra", "system-ui"],
+      inter: ["Inter", "sans-serif"],
+    },
     colors: {
       border: "hsl(var(--border))",
       input: "hsl(var(--input))",
