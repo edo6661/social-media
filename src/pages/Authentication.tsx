@@ -11,6 +11,7 @@ const Authentication = () => {
         initial="initial"
         animate="animate"
         whileInView={"inView"}
+        viewport={{ once: true }}
       >
         <article className=" auth-img-container ">
           <img

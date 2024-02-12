@@ -26,12 +26,12 @@ $authPadding: 62px 46px;
       @apply flex flex-col justify-center items-center gap-4 pt-8 pb-4;
 
       input {
-        @apply bg-primaryInput font-inter text-sm italic text-primaryDarkGray;
+        @apply bg-primaryInput font-inter text-sm italic  pl-4 text-black;
         border-radius: 0.5rem;
         height: 40px;
         width: 300px;
         &::placeholder {
-          @apply pl-4;
+          @apply text-primaryDarkGray;
         }
       }
     }
