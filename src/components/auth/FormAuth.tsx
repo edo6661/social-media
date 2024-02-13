@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
 import { MotionProps } from "@/types/Auth";
 import { DataAuthSchema, getAuthSchema } from "@/lib/zod/zodAuth";
+import { DevTool } from "@hookform/devtools";
+import { DEV } from "@/constant";
 
 const FormAuth = ({
   motionProps,
@@ -19,6 +21,7 @@ const FormAuth = ({
     reset,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm<DataAuthSchema>({
     resolver: zodResolver(getAuthSchema(isInRegister)),
     mode: "onTouched",
@@ -71,51 +74,54 @@ const FormAuth = ({
   );
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
-      <div className="container-input">
-        <input
-          type="text"
-          placeholder="Username"
-          {...register("username")}
-          className={errorsUsername}
-        />
+    <>
+      {DEV && <DevTool control={control} />}
+      <form onSubmit={handleSubmit(submit)} className="">
+        <div className="container-input">
+          <input
+            type="text"
+            placeholder="Username"
+            {...register("username")}
+            className={errorsUsername}
+          />
 
-        <AnimatePresence>
-          {isInRegister && (
-            <>
-              <motion.input
-                type="text"
-                placeholder="Email"
-                className={errorsEmail}
-                {...register("email")}
-                {...motionProps}
-              />
-            </>
-          )}
-        </AnimatePresence>
-        <input
-          type="password"
-          placeholder="Password"
-          {...register("password")}
-          className={errorsPassword}
-        />
-      </div>
-      {!isInRegister && (
-        <motion.div className="container-forgot" {...motionProps}>
-          <div>
-            <input type="checkbox" id="remember" />
-            <p>Remember Me</p>
-          </div>
-          <Link to="/forgot">Forgot Password</Link>
-        </motion.div>
-      )}
-      {elLoginSignUpAnimated}
-      <p>
-        {" "}
-        <span className=" text-primaryRed">temporary</span> Look at the console
-        after submitting
-      </p>
-    </form>
+          <AnimatePresence>
+            {isInRegister && (
+              <>
+                <motion.input
+                  type="text"
+                  placeholder="Email"
+                  className={errorsEmail}
+                  {...register("email")}
+                  {...motionProps}
+                />
+              </>
+            )}
+          </AnimatePresence>
+          <input
+            type="password"
+            placeholder="Password"
+            {...register("password")}
+            className={errorsPassword}
+          />
+        </div>
+        {!isInRegister && (
+          <motion.div className="container-forgot" {...motionProps}>
+            <div>
+              <input type="checkbox" id="remember" />
+              <p>Remember Me</p>
+            </div>
+            <Link to="/forgot">Forgot Password</Link>
+          </motion.div>
+        )}
+        {elLoginSignUpAnimated}
+        <p>
+          {" "}
+          <span className=" text-primaryRed">temporary</span> Look at the
+          console after submitting
+        </p>
+      </form>
+    </>
   );
 };
 

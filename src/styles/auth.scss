@@ -1,9 +1,6 @@
 @import "partials";
 
 // TODO TEMPORARY
-body {
-  @apply bg-primaryWhite;
-}
 
 .auth-container {
   @apply grid grid-cols-2 mt-8  w-full rounded-2xl;
@@ -15,9 +12,10 @@ body {
   .auth-img-container {
     @apply bg-primaryNavy rounded-l-2xl;
     img {
-      // ! sesuai figma
-      // @apply w-[448px] h-[468px];
-      @apply object-cover;
+      // ! sesuai figma, container card nya gaakan berubah height nya saat animasi sign up dan login
+      @apply w-[448px] h-[468px];
+      // ! full width and height
+      // @apply object-cover;
     }
   }
   .spesific-auth {
@@ -40,7 +38,8 @@ body {
       }
     }
     .container-forgot {
-      @apply justify-between max-w-[300px] text-xs mx-auto;
+      @apply justify-between text-xs mx-auto;
+      max-width: $authContainerActions;
       @include fl-ic;
       div {
         @apply gap-2;
@@ -54,7 +53,8 @@ body {
       }
     }
     .container-actions {
-      @apply flex flex-col gap-2  max-w-[300px] mx-auto pb-[81px] pt-[35px];
+      @apply flex flex-col gap-2 mx-auto pb-[81px] pt-[35px];
+      max-width: $authContainerActions;
     }
     .container-signup {
       @apply gap-2 text-xs justify-center;

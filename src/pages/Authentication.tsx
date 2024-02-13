@@ -11,20 +11,16 @@ import {
 import FormAuth from "@/components/auth/FormAuth";
 import AnimatedImageAuth from "@/components/auth/AnimatedImageAuth";
 import BottomAuth from "@/components/auth/BottomAuth";
-
-// ! component belum di pisah sengaja panjangin dulu, kalo dah selesai baru dipisah
+import TitleAuth from "@/components/auth/TitleAuth";
 
 const Authentication = () => {
   const { isAnimatedAuth, setIsAnimatedAuth } = useGlobalState(
     (state) => state
   );
+  const conditionalAnimation = isAnimatedAuth ? secondAuthVars : authVars;
 
   const [isInRegister, setIsInRegister] = useState(false);
   const handleIsInRegister = () => setIsInRegister((prev) => !prev);
-
-  const conditionalAnimation = isAnimatedAuth ? secondAuthVars : authVars;
-
-  useEffect(() => setIsAnimatedAuth(true), []);
 
   const motionProps = {
     variants: conditionalAnimation,
@@ -37,6 +33,8 @@ const Authentication = () => {
     // layout: true,
   };
 
+  useEffect(() => setIsAnimatedAuth(true), []);
+
   return (
     <>
       <motion.section className="container" {...motionProps}>
@@ -48,10 +46,7 @@ const Authentication = () => {
             />
           </article>
           <article className="spesific-auth">
-            <h1>Do'Talk</h1>
-            <p className=" text-[20px] font-extralight italic">
-              say what you want to say
-            </p>
+            <TitleAuth />
             <FormAuth motionProps={motionProps} isInRegister={isInRegister} />
             <BottomAuth
               motionProps={motionProps}
