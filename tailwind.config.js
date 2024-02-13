@@ -36,6 +36,7 @@ export const theme = {
       inter: ["Inter", "sans-serif"],
     },
     colors: {
+      primaryRed: "#EA0601",
       border: "hsl(var(--border))",
       input: "hsl(var(--input))",
       ring: "hsl(var(--ring))",

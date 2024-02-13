@@ -13,6 +13,9 @@ $authPadding: 62px 46px;
   }
   .auth-img-container {
     @apply bg-primaryNavy flex items-center justify-center rounded-l-2xl;
+    img {
+      @apply w-[448px] h-[468px];
+    }
   }
   .spesific-auth {
     @apply bg-secondaryWhite text-black rounded-r-2xl w-full text-center;
@@ -34,6 +37,24 @@ $authPadding: 62px 46px;
           @apply text-primaryDarkGray;
         }
       }
+    }
+    .container-forgot {
+      @apply flex items-center justify-between max-w-[300px] text-xs mx-auto;
+      div {
+        @apply flex items-center gap-2;
+        p {
+          @apply text-primaryDarkGray;
+        }
+        a {
+          @apply text-primaryBlue;
+        }
+      }
+    }
+    .container-actions {
+      @apply flex flex-col gap-2  max-w-[300px] mx-auto pb-[81px] pt-[35px];
+    }
+    .container-signup {
+      @apply flex items-center gap-2 text-xs justify-center;
     }
   }
 }

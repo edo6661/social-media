@@ -76,3 +76,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .fl-cen {
+    @apply flex items-center;
+  }
+}
