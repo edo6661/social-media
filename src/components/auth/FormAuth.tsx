@@ -90,14 +90,6 @@ const FormAuth = ({
                 {...register("email")}
                 {...motionProps}
               />
-              {errors.email && (
-                <motion.p
-                  className="text-primaryRed text-[12px] font-inter font-[500] mt-1"
-                  {...motionProps}
-                >
-                  {errors.email.message}
-                </motion.p>
-              )}
             </>
           )}
         </AnimatePresence>
@@ -118,6 +110,11 @@ const FormAuth = ({
         </motion.div>
       )}
       {elLoginSignUpAnimated}
+      <p>
+        {" "}
+        <span className=" text-primaryRed">temporary</span> Look at the console
+        after submitting
+      </p>
     </form>
   );
 };
