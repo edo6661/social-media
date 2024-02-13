@@ -4,6 +4,8 @@ export interface TagType {
   posts: string[];
   description?: string;
   postsCount: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface TagSubset {
