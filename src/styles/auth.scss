@@ -10,7 +10,8 @@
     padding: $authPadding;
   }
   .auth-img-container {
-    @apply bg-primaryNavy rounded-l-2xl;
+    @apply bg-primaryNavy rounded-l-2xl justify-center;
+    @include fl-ic;
     img {
       // ! sesuai figma, container card nya gaakan berubah height nya saat animasi sign up dan login
       @apply w-[448px] h-[468px];
