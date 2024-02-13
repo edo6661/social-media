@@ -11,6 +11,7 @@ import {
 import FormAuth from "@/components/auth/FormAuth";
 import AnimatedImageAuth from "@/components/auth/AnimatedImageAuth";
 import BottomAuth from "@/components/auth/BottomAuth";
+import TitleAuth from "@/components/auth/TitleAuth";
 
 // ! component belum di pisah sengaja panjangin dulu, kalo dah selesai baru dipisah
 
@@ -48,10 +49,7 @@ const Authentication = () => {
             />
           </article>
           <article className="spesific-auth">
-            <h1>Do'Talk</h1>
-            <p className=" text-[20px] font-extralight italic">
-              say what you want to say
-            </p>
+            <TitleAuth />
             <FormAuth motionProps={motionProps} isInRegister={isInRegister} />
             <BottomAuth
               motionProps={motionProps}
