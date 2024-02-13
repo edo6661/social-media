@@ -15,6 +15,12 @@ export interface UserType {
   updatedAt: Date;
 }
 
+export interface UserSubset {
+  _id: string;
+  username: string;
+  email: string;
+}
+
 export interface Social {
   following: UserType[];
   followers: UserType[];

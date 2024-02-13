@@ -16,4 +16,6 @@ export interface CommentType {
     count: number;
   };
   repliesCounts: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
