@@ -13,19 +13,14 @@ import AnimatedImageAuth from "@/components/auth/AnimatedImageAuth";
 import BottomAuth from "@/components/auth/BottomAuth";
 import TitleAuth from "@/components/auth/TitleAuth";
 
-// ! component belum di pisah sengaja panjangin dulu, kalo dah selesai baru dipisah
-
 const Authentication = () => {
   const { isAnimatedAuth, setIsAnimatedAuth } = useGlobalState(
     (state) => state
   );
+  const conditionalAnimation = isAnimatedAuth ? secondAuthVars : authVars;
 
   const [isInRegister, setIsInRegister] = useState(false);
   const handleIsInRegister = () => setIsInRegister((prev) => !prev);
-
-  const conditionalAnimation = isAnimatedAuth ? secondAuthVars : authVars;
-
-  useEffect(() => setIsAnimatedAuth(true), []);
 
   const motionProps = {
     variants: conditionalAnimation,
@@ -37,6 +32,8 @@ const Authentication = () => {
     // ! minta saran fario tentang props ini
     // layout: true,
   };
+
+  useEffect(() => setIsAnimatedAuth(true), []);
 
   return (
     <>
