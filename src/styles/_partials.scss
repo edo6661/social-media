@@ -1,0 +1,9 @@
+// ! general
+@mixin fl-ic {
+  @apply flex items-center;
+}
+@mixin primaryShadow {
+  @apply shadow-muted-foreground shadow-md;
+}
+// ! auth
+$authPadding: 62px 46px;

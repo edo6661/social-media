@@ -1,4 +1,3 @@
-import "@/styles/app.scss";
 import useTitle from "./hooks/useTitle";
 import { Outlet } from "react-router-dom";
 import Header from "./components/general/Header";

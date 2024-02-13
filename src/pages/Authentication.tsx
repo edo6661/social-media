@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import "@/styles/auth.scss";
 import { motion } from "framer-motion";
 import { useGlobalState } from "@/lib/zustand";
 import { useEffect, useState } from "react";
@@ -38,25 +39,27 @@ const Authentication = () => {
 
   return (
     <>
-      <motion.section className="auth-container" {...motionProps}>
-        <article className=" auth-img-container">
-          <AnimatedImageAuth
-            variants={conditionalAnimation}
-            isInRegister={isInRegister}
-          />
-        </article>
-        <article className="spesific-auth">
-          <h1>Do'Talk</h1>
-          <p className=" text-[20px] font-extralight italic">
-            say what you want to say
-          </p>
-          <FormAuth motionProps={motionProps} isInRegister={isInRegister} />
-          <BottomAuth
-            motionProps={motionProps}
-            isInRegister={isInRegister}
-            handleIsInRegister={handleIsInRegister}
-          />
-        </article>
+      <motion.section className="container" {...motionProps}>
+        <div className="auth-container">
+          <article className=" auth-img-container">
+            <AnimatedImageAuth
+              variants={conditionalAnimation}
+              isInRegister={isInRegister}
+            />
+          </article>
+          <article className="spesific-auth">
+            <h1>Do'Talk</h1>
+            <p className=" text-[20px] font-extralight italic">
+              say what you want to say
+            </p>
+            <FormAuth motionProps={motionProps} isInRegister={isInRegister} />
+            <BottomAuth
+              motionProps={motionProps}
+              isInRegister={isInRegister}
+              handleIsInRegister={handleIsInRegister}
+            />
+          </article>
+        </div>
       </motion.section>
     </>
   );

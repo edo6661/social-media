@@ -1,0 +1,64 @@
+@import "partials";
+
+// TODO TEMPORARY
+body {
+  @apply bg-primaryWhite;
+}
+
+.auth-container {
+  @apply grid grid-cols-2 mt-8  w-full rounded-2xl;
+  @include primaryShadow;
+
+  article {
+    padding: $authPadding;
+  }
+  .auth-img-container {
+    @apply bg-primaryNavy rounded-l-2xl;
+    img {
+      // ! sesuai figma
+      // @apply w-[448px] h-[468px];
+      @apply object-cover;
+    }
+  }
+  .spesific-auth {
+    @apply bg-secondaryWhite text-black rounded-r-2xl w-full text-center;
+    h1 {
+      @apply text-6xl font-mogra text-primaryTitle;
+    }
+
+    .container-input {
+      @apply space-y-4 pt-8 pb-4;
+
+      input {
+        @apply bg-primaryInput  text-sm italic  pl-4 text-black;
+        border-radius: 0.5rem;
+        height: 40px;
+        width: 300px;
+        &::placeholder {
+          @apply text-primaryDarkGray;
+        }
+      }
+    }
+    .container-forgot {
+      @apply justify-between max-w-[300px] text-xs mx-auto;
+      @include fl-ic;
+      div {
+        @apply gap-2;
+        @include fl-ic;
+        p {
+          @apply text-primaryDarkGray;
+        }
+        a {
+          @apply text-primaryBlue;
+        }
+      }
+    }
+    .container-actions {
+      @apply flex flex-col gap-2  max-w-[300px] mx-auto pb-[81px] pt-[35px];
+    }
+    .container-signup {
+      @apply gap-2 text-xs justify-center;
+      @include fl-ic;
+    }
+  }
+}
