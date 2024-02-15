@@ -20,3 +20,24 @@ export interface PostType {
   };
   commentsCount?: number;
 }
+
+interface Pagination {
+  currentPage: string;
+  dataPerPage: number;
+  hasNextPage: boolean;
+  totalData: number;
+  totalPages: number;
+}
+
+interface TypeLinks {
+  next?: string;
+  prev?: string;
+}
+
+export interface PromisePostType {
+  category: string;
+  data: PostType[];
+  links: TypeLinks;
+  pagination: Pagination;
+  categoryAvailable: string;
+}

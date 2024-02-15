@@ -56,7 +56,7 @@ const FormAuth = ({
   const loginSignUpEl = (
     <motion.div className="container-actions" {...motionProps}>
       <button
-        className=" bg-primaryNavy text-white h-10 rounded-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:grayscale transition-all duration-300"
+        className=" bg-primaryOrange text-white h-10 rounded-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:grayscale transition-all duration-300"
         type="submit"
         disabled={disabled}
       >

@@ -1,7 +1,7 @@
 import Posts from "@/components/shared/Posts";
 
-const Homepage = () => {
+const PostsCat = () => {
   return <Posts />;
 };
 
-export default Homepage;
+export default PostsCat;

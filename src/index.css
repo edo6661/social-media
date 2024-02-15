@@ -72,12 +72,24 @@
   * {
     @apply border-border;
   }
+  /* ! nambahin ini agar dari dark ke light ke transisi, root behaviour agak lain */
+  :root {
+    @apply theme-transition;
+  }
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply text-foreground font-inter dark:bg-darkSecondary bg-primaryWhite theme-transition;
+  }
+  input {
+    @apply bg-primaryInput  text-sm italic  pl-4 text-black placeholder:text-primaryDarkGray;
   }
 }
 
 @layer utilities {
+  .theme-transition {
+    --transition-duration: 0.5s;
+    transition: background-color var(--transition-duration),
+      color var(--transition-duration) linear !important;
+  }
   .fl-ic {
     @apply flex items-center;
   }

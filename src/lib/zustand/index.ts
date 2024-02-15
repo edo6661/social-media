@@ -7,16 +7,12 @@ export interface StoreType {
   handleCheckedAll: () => void;
   isAnimatedAuth: boolean;
   setIsAnimatedAuth: (isAnimatedAuth: boolean) => void;
-  isInRegister: boolean;
-  setIsInRegister: (isInRegister: boolean) => void;
 }
 
 export const useGlobalState = create<StoreType>((set) => ({
   isAnimatedAuth: false,
   setIsAnimatedAuth: (isAnimatedAuth) => set({ isAnimatedAuth }),
   checked: {},
-  isInRegister: false,
-  setIsInRegister: (isInRegister) => set({ isInRegister }),
   setChecked: (checked) => set({ checked }),
   handleChecked: (id) =>
     set((state) => ({

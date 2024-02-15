@@ -3,7 +3,7 @@
   @apply flex items-center;
 }
 @mixin primaryShadow {
-  @apply shadow-muted-foreground shadow-md;
+  @apply shadow-muted-foreground shadow-sm dark:shadow-none;
 }
 // ! auth
 $authPadding: 62px 46px;

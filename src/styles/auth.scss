@@ -10,7 +10,7 @@
     padding: $authPadding;
   }
   .auth-img-container {
-    @apply bg-primaryNavy rounded-l-2xl justify-center;
+    @apply bg-primaryCyan rounded-l-2xl justify-center;
     @include fl-ic;
     img {
       // ! sesuai figma, container card nya gaakan berubah height nya saat animasi sign up dan login
@@ -29,13 +29,9 @@
       @apply space-y-4 pt-8 pb-4;
 
       input {
-        @apply bg-primaryInput  text-sm italic  pl-4 text-black;
         border-radius: 0.5rem;
         height: 40px;
         width: 300px;
-        &::placeholder {
-          @apply text-primaryDarkGray;
-        }
       }
     }
     .container-forgot {
