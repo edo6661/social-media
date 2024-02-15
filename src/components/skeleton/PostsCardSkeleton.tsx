@@ -14,7 +14,8 @@ export default function PostsCardSKeleton({ length }: { length: number }) {
               </div>
             </div>
             <Skeleton className=" h-40 w-full" />
-            <div className=" space-x-2">
+            {/* // ! flex wrap sementara sampe rio ngasih ui mobile */}
+            <div className=" space-x-2 flex-wrap">
               <Skeleton className=" w-16 h-10 rounded-2xl" />
               <Skeleton className=" w-16 h-10 rounded-2xl" />
               <Skeleton className=" w-16 h-10 rounded-2xl" />

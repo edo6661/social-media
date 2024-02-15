@@ -15,7 +15,8 @@ const PostCard = ({ title }: PostType) => {
         </div>
       </div>
       <img src="/posts.png" alt={title} />
-      <div className=" space-x-2">
+      {/* // ! flex wrap sementara sampe rio ngasih ui mobile */}
+      <div className=" space-x-2flex-wrap">
         <PostsTags />
       </div>
       <div className="post-action">

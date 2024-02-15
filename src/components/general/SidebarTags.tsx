@@ -1,3 +1,4 @@
+import SkeletonSideTags from "../skeleton/SkeletonSideTags";
 import Title from "./Title";
 
 const SidebarTags = () => {
@@ -50,6 +51,7 @@ const SidebarTags = () => {
           </div>
         ))}
       </div>
+      <SkeletonSideTags />
     </>
   );
 };

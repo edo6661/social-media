@@ -82,9 +82,13 @@
 
         .post-action {
           @apply gap-4 justify-between;
+          // ! untuk sementara sampe rio ngasih mobile nya
+          @apply flex-wrap;
 
           .action {
             @apply gap-4;
+            // ! untuk sementara sampe rio ngasih mobile nya
+            @apply flex-wrap;
           }
         }
       }

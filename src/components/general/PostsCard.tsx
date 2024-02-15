@@ -12,6 +12,7 @@ const PostsCard = () => {
 
   return (
     <>
+      {/* <PostsCardSkeleton length={posts?.data.length || 5} /> */}
       {isLoading && <PostsCardSkeleton length={posts?.data.length || 5} />}
       <div className="card-post">
         {posts?.data.map((post) => {
