@@ -1,4 +1,4 @@
-import { categorys, rootPath } from "@/constant";
+import { categorys } from "@/constant";
 import { upperFirst } from "@/helpers";
 import { cn } from "@/lib/utils";
 import { Pin } from "lucide-react";

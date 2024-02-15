@@ -1,5 +1,3 @@
-import React from "react";
-
 const MenuActions = () => {
   return (
     <div className="flex items-center justify-between text-primaryDarkGray pb-2">
