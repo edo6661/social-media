@@ -51,6 +51,7 @@ const SidebarTags = () => {
           </div>
         ))}
       </div>
+
       <SkeletonSideTags />
     </>
   );

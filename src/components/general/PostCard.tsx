@@ -6,7 +6,7 @@ import PostsTags from "./PostsTags";
 
 const PostCard = ({ title }: PostType) => {
   return (
-    <div className="card-inner">
+    <>
       <div className="justify-between">
         <h4 className="font-medium">{upperFirst(title)}</h4>
         <div>
@@ -22,7 +22,7 @@ const PostCard = ({ title }: PostType) => {
       <div className="post-action">
         <ActionsPosts />
       </div>
-    </div>
+    </>
   );
 };
 
