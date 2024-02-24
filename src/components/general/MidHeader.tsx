@@ -2,7 +2,9 @@ import { Search } from "lucide-react";
 
 const MidHeader = () => {
   const mockSelect = ["Posts", "Tags", "Users"];
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {};
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+  };
   return (
     <>
       <div className="relative">
