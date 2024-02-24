@@ -8,6 +8,11 @@ import { MotionProps } from "@/types/Auth";
 import { DataAuthSchema, getAuthSchema } from "@/lib/zod/zodAuth";
 import { DevTool } from "@hookform/devtools";
 import { DEV } from "@/constant";
+import { useMutation } from "@tanstack/react-query";
+import myAxios from "@/config/axiosConfig";
+import { UserType } from "@/types/User";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const FormAuth = ({
   motionProps,
@@ -16,6 +21,7 @@ const FormAuth = ({
   motionProps: MotionProps;
   isInRegister: boolean;
 }) => {
+  const navigate = useNavigate();
   const {
     register,
     reset,
@@ -24,7 +30,7 @@ const FormAuth = ({
     control,
   } = useForm<DataAuthSchema>({
     resolver: zodResolver(getAuthSchema(isInRegister)),
-    mode: "onTouched",
+    mode: "onBlur",
   });
 
   const errStyle = "border border-primaryRed  ";
@@ -33,9 +39,24 @@ const FormAuth = ({
   const errorsPassword = errors.password ? errStyle : "";
   const errorsEmail = errors.email ? errStyle : "";
   const disabled = Object.keys(errors).length > 0;
+  const requestPath = isInRegister ? "/auth/register" : "/auth/login";
+
+  const mutation = useMutation({
+    mutationKey: ["auth"],
+    mutationFn: async (data: Partial<UserType>) => {
+      await myAxios.post(requestPath, data);
+      toast.success("Succesfully login");
+      navigate("/");
+      // navigate("/");
+    },
+  });
+
+  if (mutation.isError) {
+    console.error(mutation.error);
+  }
 
   const submit = (data: DataAuthSchema) => {
-    console.log(data);
+    mutation.mutate(data);
     reset();
   };
 

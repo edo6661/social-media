@@ -5,6 +5,7 @@ import { usePostsInfinite } from "@/hooks/usePostsInfinite";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { useThrottledCallback } from "use-debounce";
+import PostsCardSKeleton from "../skeleton/PostsCardSkeleton";
 const PostsCard = () => {
   const { cat } = useParams();
 
@@ -23,7 +24,7 @@ const PostsCard = () => {
     throw error;
   }
 
-  const throttledNextPage = useThrottledCallback(fetchNextPage, 1000);
+  const throttledNextPage = useThrottledCallback(fetchNextPage, 100);
 
   useEffect(() => {
     if (!inView || isFetchingNextPage || isFetching) {
@@ -32,6 +33,8 @@ const PostsCard = () => {
     throttledNextPage();
     // ! gaperlu di abort fetchNextData nya karena fetchNextPage itu built in function dari react-query, jadi dia udah punya built in aborting i guess?
   }, [inView, isFetchingNextPage, isFetching]);
+
+  const skeletonCard = <PostsCardSKeleton length={1} />;
 
   return (
     <>
@@ -49,7 +52,7 @@ const PostsCard = () => {
           );
         })}
       </div>
-      <button
+      {/* <button
         onClick={() => fetchNextPage()}
         disabled={!hasNextPage || isFetchingNextPage}
       >
@@ -58,8 +61,16 @@ const PostsCard = () => {
           : hasNextPage
           ? "Load More"
           : !isFetching && "Nothing more to load"}
-      </button>
-      <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div>
+      </button> */}
+
+      {/* <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div> */}
+
+      {isFetching && !isFetchingNextPage ? skeletonCard : null}
+      {isFetchingNextPage
+        ? skeletonCard
+        : hasNextPage
+        ? skeletonCard
+        : !isFetching && "Nothing more to load"}
     </>
   );
 };

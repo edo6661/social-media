@@ -2,11 +2,13 @@ import useTitle from "./hooks/useTitle";
 import { Outlet } from "react-router-dom";
 import Header from "./components/general/Header";
 import Footer from "./components/general/Footer";
+import HeaderDika from "./components/HeaderDika";
 function App() {
   useTitle("Home");
 
   return (
     <>
+      {/* <HeaderDika /> */}
       <Header />
       <main className="min-h-screen">
         <Outlet />
