@@ -1,20 +1,20 @@
-import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import "@/styles/header.scss";
+import RightHeader from "./RightHeader";
+import MidHeader from "./MidHeader";
+import LeftHeader from "./LeftHeader";
 const Header = () => {
-  const location = useLocation();
-  const authPath = location.pathname == "/auth";
-  const conditionalLink = authPath ? "/" : "/auth";
-
   return (
     <header>
-      <motion.div
-        key={conditionalLink}
-        transition={{ type: "spring" }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        <Link to={conditionalLink}>{authPath ? "Home" : "Auth"}</Link>
-      </motion.div>
+      <nav>
+        <div className="left">
+          <LeftHeader />
+        </div>
+        <div className="mid">
+          <MidHeader />
+        </div>
+
+        <RightHeader />
+      </nav>
     </header>
   );
 };

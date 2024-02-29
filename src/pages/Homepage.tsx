@@ -1,5 +1,14 @@
+import Posts from "@/components/shared/Posts";
+// import useUser from "@/hooks/useUser";
+
 const Homepage = () => {
-  return <section>Homepage</section>;
+  // const { data, isError, error } = useUser();
+
+  // if (isError) {
+  //   console.error(error);
+  // }
+  // console.log(data);
+  return <Posts />;
 };
 
 export default Homepage;

@@ -1,11 +1,11 @@
 export const transitionAuth = {
+  // ! lebih lambat dan konsisten
+  duration: 0.6,
+  ease: "linear",
   // ! kalo mau lebih cepet
   // type: "spring",
   // stiffness: 120,
   // damping: 10,
-  // ! lebih lambat dan konsisten
-  duration: 0.6,
-  ease: "linear",
 };
 
 const baseAuthVars = {

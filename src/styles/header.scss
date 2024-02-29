@@ -1,0 +1,36 @@
+@import "partials";
+header {
+  @apply container;
+}
+nav {
+  @apply bg-tertiaryWhite dark:bg-darkTertiary p-4 mt-8 justify-between  rounded-xl;
+  @apply grid-cols-4 grid justify-between;
+  @include primaryShadow;
+  // @include fl-ic;
+
+  div {
+    @apply gap-6;
+    @include fl-ic;
+  }
+  .left {
+  }
+  .mid {
+    @apply flex-1 justify-center;
+    @apply col-span-2;
+    input {
+      // ! temporary width
+      @apply rounded-xl  w-[431px] h-[44px];
+    }
+  }
+  .right {
+    @apply justify-end;
+    svg {
+      width: 30px;
+      height: 30px;
+      &:last-child {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}

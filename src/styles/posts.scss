@@ -1,0 +1,97 @@
+@import "partials";
+
+@mixin inner {
+  @apply dark:bg-darkTertiary dark:text-tertiaryWhite text-darkTertiary bg-tertiaryWhite rounded-xl;
+}
+@mixin shadowInner {
+  @include inner;
+  @include primaryShadow;
+}
+@mixin wrapper {
+  @apply bg-primaryWhite dark:bg-darkSecondary space-y-4 shadow-none;
+  padding: 0 !important;
+}
+
+.wrapper-posts {
+  @apply container;
+
+  .wrapper-content {
+    @apply py-6 gap-12 grid grid-cols-4;
+  }
+
+  article {
+    @apply px-4 py-6;
+    @include shadowInner;
+  }
+
+  .container-sidecat,
+  .container-tags {
+    @apply space-y-2 max-h-96;
+  }
+
+  .container-tags {
+    @include wrapper;
+    > div {
+      @apply space-y-4 px-4 py-6;
+      @include shadowInner;
+    }
+  }
+
+  .container-post {
+    @apply col-span-2;
+    @include wrapper;
+
+    .container-menu {
+      @apply w-[431px] p-4 mx-auto  justify-between place-self-start;
+      @include fl-ic;
+      @include shadowInner;
+
+      div {
+        @apply gap-4;
+        @include fl-ic;
+
+        svg {
+          @apply w-8 h-8;
+        }
+        button svg {
+          width: 20px !important;
+          height: 20px !important;
+        }
+      }
+    }
+
+    .card-post {
+      @apply space-y-8;
+
+      .card-inner {
+        @include shadowInner;
+        @apply p-4 space-y-6;
+
+        img {
+          @apply object-cover w-full;
+        }
+
+        svg {
+          @apply w-5 h-5 text-primaryDarkGray;
+        }
+
+        div {
+          @apply gap-1;
+          @include fl-ic;
+        }
+
+        .post-action {
+          @apply gap-4 justify-between;
+          // ! untuk sementara sampe rio ngasih mobile nya
+          @apply flex-wrap;
+
+          .action {
+            @apply gap-4;
+            // ! untuk sementara sampe rio ngasih mobile nya
+            @apply flex-wrap;
+          }
+        }
+      }
+    }
+  }
+}
