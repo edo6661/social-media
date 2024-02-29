@@ -3,14 +3,14 @@ export interface UserType {
   username: string;
   email: string;
   password: string;
-  roles: "Admin" | "User";
+  roles: "Admin" | "User" | "Bot";
   fullname?: string;
-  profilePict?: string | File;
+  profilePict?: string;
   phoneNumber?: number;
   isOauth: boolean;
   lastLogin: Date;
   bio?: string;
-  social?: Social;
+  social: Social;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -19,6 +19,7 @@ export interface UserSubset {
   _id: string;
   username: string;
   email: string;
+  profilePict?: string;
 }
 
 export interface Social {

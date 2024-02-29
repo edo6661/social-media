@@ -1,21 +1,18 @@
-import { UserType } from "./User";
+import { UserSubset } from "./User";
 
 export interface CommentType {
   _id: string;
   parentId?: string;
-  userId: string;
+  user: UserSubset;
   postId: string;
   content: string;
   image?: string;
-  upvotes: {
-    user: UserType[];
-    count: number;
-  };
-  downvotes: {
-    user: UserType[];
-    count: number;
-  };
+  upvotes: string[];
+  upvotesCount: number;
+  downvotes: string[];
+  downvotesCount: number;
   repliesCounts: number;
+  isEdited: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

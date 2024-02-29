@@ -1,23 +1,23 @@
+import { InterestSubset } from "./Interest";
 import { TagSubset } from "./Tag";
-import { UserSubset, UserType } from "./User";
+import { UserSubset } from "./User";
 
 export interface PostType {
-  id: string; // ! for react-query right? why not change id to _id in react query so it become one _id or id
+  id: string;
   body: string;
   _id: string;
-  userId: UserSubset | string;
+  user: UserSubset; // * Populated makanya namanya user bukan userId
   title: string;
-  tags: TagSubset[] | string[];
-  images?: string[] | File[];
+  interest: InterestSubset;
+  tags: TagSubset[];
+  images?: string[];
   description?: string;
-  upvotes?: {
-    count: number;
-    user: UserType[];
-  };
-  downvotes?: {
-    count: number;
-    user: UserType[];
-  };
+  upvotes: string[];
+  upvotesCount: number;
+  downvotes: string[];
+  downvotesCount: number;
+  cheers: string[];
+  cheersCount: number;
   commentsCount?: number;
   createdAt: Date;
   updatedAt: Date;
