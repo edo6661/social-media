@@ -1,24 +1,26 @@
-import { UserType } from "./User";
-// * featuring new supreme leader
+import { InterestSubset } from "./Interest";
+import { TagSubset } from "./Tag";
+import { UserSubset } from "./User";
 
 export interface PostType {
   id: string;
   body: string;
   _id: string;
-  userId: string;
+  user: UserSubset; // * Populated makanya namanya user bukan userId
   title: string;
-  tags: string[];
-  images?: string[] | File[];
+  interest: InterestSubset;
+  tags: TagSubset[];
+  images?: string[];
   description?: string;
-  upvotes?: {
-    count: number;
-    user: UserType[];
-  };
-  downvotes?: {
-    count: number;
-    user: UserType[];
-  };
+  upvotes: string[];
+  upvotesCount: number;
+  downvotes: string[];
+  downvotesCount: number;
+  cheers: string[];
+  cheersCount: number;
   commentsCount?: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 interface Pagination {

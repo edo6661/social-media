@@ -1,15 +1,16 @@
-export interface TagType {
+export interface InterestType {
   _id: string;
   name: string;
-  interest?: string;
-  posts: string[];
+  image: string;
   description?: string;
+  tagsCount: number;
   postsCount: number;
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface TagSubset {
+export interface InterestSubset {
   _id: string;
   name: string;
+  image: string;
 }
