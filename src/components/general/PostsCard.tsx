@@ -6,6 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { useThrottledCallback } from "use-debounce";
 import PostsCardSKeleton from "../skeleton/PostsCardSkeleton";
+import useUser from "@/hooks/useUser";
 const PostsCard = () => {
   const { cat } = useParams();
 
@@ -19,7 +20,10 @@ const PostsCard = () => {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
-  } = usePostsInfinite(cat || "Home");
+  } = usePostsInfinite(cat || "home");
+
+  const { data: currentUser } = useUser();
+
   if (isError) {
     throw error;
   }
@@ -31,15 +35,16 @@ const PostsCard = () => {
       return;
     }
     throttledNextPage();
-    // ! gaperlu di abort fetchNextData nya karena fetchNextPage itu built in function dari react-query, jadi dia udah punya built in aborting i guess?
   }, [inView, isFetchingNextPage, isFetching]);
 
   const skeletonCard = <PostsCardSKeleton length={1} />;
 
   return (
     <>
-      {/* {isLoading && <PostsCardSkeleton length={posts?.data.length || 5} />} */}
       <div className="card-post">
+        {posts && posts?.length < 0 && (
+          <p className="font-bold text-5xl">empty posts</p>
+        )}
         {posts?.map((post, i) => {
           return (
             <div
@@ -47,23 +52,15 @@ const PostsCard = () => {
               key={post._id}
               ref={i + 1 === posts.length ? ref : null}
             >
-              <PostCard {...post} />
+              <PostCard
+                {...post}
+                currentUserId={(currentUser && currentUser._id) || ""}
+                cat={cat || "home"}
+              />
             </div>
           );
         })}
       </div>
-      {/* <button
-        onClick={() => fetchNextPage()}
-        disabled={!hasNextPage || isFetchingNextPage}
-      >
-        {isFetchingNextPage
-          ? "Loading more..."
-          : hasNextPage
-          ? "Load More"
-          : !isFetching && "Nothing more to load"}
-      </button> */}
-
-      {/* <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div> */}
 
       {isFetching && !isFetchingNextPage ? skeletonCard : null}
       {isFetchingNextPage

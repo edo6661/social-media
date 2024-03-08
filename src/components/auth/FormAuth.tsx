@@ -8,18 +8,20 @@ import { MotionProps } from "@/types/Auth";
 import { DataAuthSchema, getAuthSchema } from "@/lib/zod/zodAuth";
 import { DevTool } from "@hookform/devtools";
 import { DEV } from "@/constant";
-import { useMutation } from "@tanstack/react-query";
-import myAxios from "@/config/axiosConfig";
-import { UserType } from "@/types/User";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
+import useAuthMutation from "@/hooks/useAuthMutation";
+import { errorsAuth, optionalToast, requestPath } from "@/helpers/auth";
+import { Button } from "../ui/button";
+import React from "react";
 
 const FormAuth = ({
   motionProps,
   isInRegister,
+  setIsInRegister,
 }: {
   motionProps: MotionProps;
   isInRegister: boolean;
+  setIsInRegister: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const navigate = useNavigate();
   const {
@@ -30,39 +32,28 @@ const FormAuth = ({
     control,
   } = useForm<DataAuthSchema>({
     resolver: zodResolver(getAuthSchema(isInRegister)),
-    mode: "onBlur",
+    mode: "onChange",
   });
+  const { errorsUsername, errorsPassword, errorsEmail } = errorsAuth(errors);
+  const reqPath = requestPath(isInRegister);
+  const optToast = optionalToast(isInRegister);
 
-  const errStyle = "border border-primaryRed  ";
-
-  const errorsUsername = errors.username ? errStyle : "";
-  const errorsPassword = errors.password ? errStyle : "";
-  const errorsEmail = errors.email ? errStyle : "";
-  const disabled = Object.keys(errors).length > 0;
-  const requestPath = isInRegister ? "/auth/register" : "/auth/login";
-
-  const mutation = useMutation({
-    mutationKey: ["auth"],
-    mutationFn: async (data: Partial<UserType>) => {
-      await myAxios.post(requestPath, data);
-      toast.success("Succesfully login");
-      navigate("/");
-      // navigate("/");
-    },
+  const { mutate, isPending } = useAuthMutation({
+    reqPath,
+    optToast,
+    isInRegister,
+    setIsInRegister,
+    reset,
+    navigate,
   });
-
-  if (mutation.isError) {
-    console.error(mutation.error);
-  }
 
   const submit = (data: DataAuthSchema) => {
-    mutation.mutate(data);
-    reset();
+    mutate(data);
   };
 
   const loginGoogle = (
-    <button
-      className="flex items-center justify-center mx-auto gap-2 h-10 border-[0.5px] w-full rounded-xl"
+    <Button
+      className=" mx-auto  border-[0.5px] w-full rounded-xl"
       type="button"
     >
       <span>
@@ -71,18 +62,14 @@ const FormAuth = ({
       <span className=" font-inter font-[500] text-[12px] text-primaryDarkGray">
         Login With Google
       </span>
-    </button>
+    </Button>
   );
 
   const loginSignUpEl = (
     <motion.div className="container-actions" {...motionProps}>
-      <button
-        className=" bg-primaryOrange text-white h-10 rounded-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:grayscale transition-all duration-300"
-        type="submit"
-        disabled={disabled}
-      >
-        {isInRegister ? "Sign Up" : "Login"}
-      </button>
+      <Button variant="auth" type="submit">
+        {!isPending ? (isInRegister ? "Sign Up" : "Login") : "Loading..."}
+      </Button>
       {!isInRegister && loginGoogle}
     </motion.div>
   );
@@ -108,15 +95,13 @@ const FormAuth = ({
 
           <AnimatePresence>
             {isInRegister && (
-              <>
-                <motion.input
-                  type="text"
-                  placeholder="Email"
-                  className={errorsEmail}
-                  {...register("email")}
-                  {...motionProps}
-                />
-              </>
+              <motion.input
+                type="email"
+                placeholder="Email"
+                className={errorsEmail}
+                {...register("email")}
+                {...motionProps}
+              />
             )}
           </AnimatePresence>
           <input
@@ -137,7 +122,6 @@ const FormAuth = ({
         )}
         {elLoginSignUpAnimated}
         <p>
-          {" "}
           <span className=" text-primaryRed">temporary</span> Look at the
           console after submitting
         </p>

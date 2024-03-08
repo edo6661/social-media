@@ -12,11 +12,19 @@ import FormAuth from "@/components/auth/FormAuth";
 import AnimatedImageAuth from "@/components/auth/AnimatedImageAuth";
 import BottomAuth from "@/components/auth/BottomAuth";
 import TitleAuth from "@/components/auth/TitleAuth";
+import { redirect } from "react-router-dom";
+import { useCurrentUserStore } from "@/lib/zustand/currentUserStore";
 
 const Authentication = () => {
-  const { isAnimatedAuth, setIsAnimatedAuth } = useGlobalState(
-    (state) => state
-  );
+  const {
+    isAnimatedAuth,
+    setIsAnimatedAuth,
+    // currentUser
+  } = useGlobalState((state) => state);
+  const { currentUser } = useCurrentUserStore((state) => state);
+
+  if (currentUser) redirect("/");
+
   const conditionalAnimation = isAnimatedAuth ? secondAuthVars : authVars;
 
   const [isInRegister, setIsInRegister] = useState(false);
@@ -47,7 +55,11 @@ const Authentication = () => {
           </article>
           <article className="spesific-auth">
             <TitleAuth />
-            <FormAuth motionProps={motionProps} isInRegister={isInRegister} />
+            <FormAuth
+              setIsInRegister={setIsInRegister}
+              motionProps={motionProps}
+              isInRegister={isInRegister}
+            />
             <BottomAuth
               motionProps={motionProps}
               isInRegister={isInRegister}

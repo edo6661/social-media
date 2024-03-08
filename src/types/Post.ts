@@ -13,17 +13,14 @@ export interface PostType {
   images?: string[];
   description?: string;
   upvotes: string[];
-  upvotesCount: number;
   downvotes: string[];
-  downvotesCount: number;
   cheers: string[];
-  cheersCount: number;
   commentsCount?: number;
   createdAt: Date;
   updatedAt: Date;
 }
 
-interface Pagination {
+export interface Pagination {
   currentPage: string;
   dataPerPage: number;
   hasNextPage: boolean;
@@ -31,7 +28,7 @@ interface Pagination {
   totalPages: number;
 }
 
-interface TypeLinks {
+export interface TypeLinks {
   next?: string;
   prev?: string;
 }

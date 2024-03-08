@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { create } from "zustand";
 
 export interface StoreType {
@@ -7,6 +8,8 @@ export interface StoreType {
   handleCheckedAll: () => void;
   isAnimatedAuth: boolean;
   setIsAnimatedAuth: (isAnimatedAuth: boolean) => void;
+  // currentUser: UserType | null;
+  // setCurrentUser: (currentUser: UserType | null) => void;
 }
 
 export const useGlobalState = create<StoreType>((set) => ({
@@ -30,4 +33,6 @@ export const useGlobalState = create<StoreType>((set) => ({
         ),
       };
     }),
+  // currentUser: null,
+  // setCurrentUser: (currentUser) => set({ currentUser }),
 }));

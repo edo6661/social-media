@@ -4,7 +4,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 export const usePostsInfinite = (cat: string) => {
   const fetchPost = async ({ pageParam = 1 }) => {
     const { data } = await myAxios.get(
-      `posts?category=${cat}&page=${pageParam}&limit=1`
+      `posts?category=${cat}&page=${pageParam}&limit=3`
     );
     return data;
   };
@@ -16,8 +16,9 @@ export const usePostsInfinite = (cat: string) => {
     isFetching,
     isFetchingNextPage,
     isError,
+    refetch,
   } = useInfiniteQuery({
-    queryKey: ["projects", cat],
+    queryKey: ["posts", cat],
     queryFn: fetchPost,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
@@ -39,5 +40,6 @@ export const usePostsInfinite = (cat: string) => {
     isFetchingNextPage,
     posts,
     isError,
+    refetch,
   };
 };

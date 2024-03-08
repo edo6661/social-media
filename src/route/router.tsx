@@ -11,6 +11,10 @@ import User from "@/pages/User";
 import Tags from "@/pages/Tags";
 import Users from "@/pages/Users";
 import Search from "@/pages/Search";
+import AddPost from "@/pages/AddPost";
+import AddInterest from "@/pages/AddInterest";
+import AddTag from "@/pages/AddTag";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +27,11 @@ const router = createBrowserRouter(
         <Route path="/search/:query" element={<Search />} />
         <Route path="/users" element={<Users />} />
         <Route path="/tags" element={<Tags />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/add-post" element={<AddPost />} />
+          <Route path="/add-interest" element={<AddInterest />} />
+          <Route path="/add-tag" element={<AddTag />} />
+        </Route>
       </Route>
     </>
   )

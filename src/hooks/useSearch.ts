@@ -1,4 +1,5 @@
 import myAxios from "@/config/axiosConfig";
+import { PostType } from "@/types/Post";
 import { useQuery } from "@tanstack/react-query";
 
 type SearchType = "Posts" | "Tags" | "Users";
@@ -16,7 +17,7 @@ export default function useSearch(search: SearchType, title?: string) {
       ? `/tags/search?${title}`
       : `/users/search?${title}`;
 
-  const { data, isError, error, isLoading } = useQuery({
+  const { data, isError, error, isLoading } = useQuery<PostType[]>({
     queryKey: [url],
     queryFn: () => fetchBySeach(url),
   });

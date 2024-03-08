@@ -80,7 +80,7 @@
     @apply text-foreground font-inter dark:bg-darkSecondary bg-primaryWhite theme-transition;
   }
   input {
-    @apply bg-primaryInput  text-sm italic  pl-4 text-black placeholder:text-primaryDarkGray;
+    @apply bg-primaryInput  text-sm italic  pl-4  placeholder:text-primaryDarkGray;
   }
 }
 

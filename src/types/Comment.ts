@@ -7,9 +7,7 @@ export interface CommentType {
   postId: string;
   content: string;
   image?: string;
-  upvotes: string[];
   upvotesCount: number;
-  downvotes: string[];
   downvotesCount: number;
   repliesCounts: number;
   isEdited: boolean;
