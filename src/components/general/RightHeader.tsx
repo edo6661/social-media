@@ -29,6 +29,11 @@ const RightHeader = () => {
     <motion.div className="right" {...motionPropsRightHeader}>
       <button onClick={() => toggleTheme()}>{conTheme}</button>
       <Bookmark className="dark:text-primaryPurple text-primaryBlack" />
+      {!currentUser && (
+        <Link to="/auth">
+          <User className="dark:text-primaryPurple text-primaryBlack" />
+        </Link>
+      )}
       {currentUser && (
         <div className=" bg-primaryInput rounded-full w-[40px] h-[40px] flex flex-col z-50 ">
           <Link to="/auth" className="mx-auto">
