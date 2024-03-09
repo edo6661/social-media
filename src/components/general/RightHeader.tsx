@@ -9,7 +9,6 @@ import { useLogout } from "@/hooks/useLogout";
 import { useCurrentUserStore } from "@/lib/zustand/currentUserStore";
 
 const RightHeader = () => {
-  // const { currentUser } = useGlobalState((state) => state);
   const { currentUser } = useCurrentUserStore((state) => state);
 
   const { mutate, isPending } = useLogout();

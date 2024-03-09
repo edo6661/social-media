@@ -6,7 +6,6 @@ export const MockTags = ["Politic", "Law", "Crime", "NSFW"];
 export const initialPostValues = {
   title: "",
   images: [""],
-  imagesString: "",
   tags: [""],
   interest: "",
   description: "",

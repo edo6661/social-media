@@ -1,4 +1,5 @@
 import myAxios from "@/config/axiosConfig";
+import { PostType } from "@/types/Post";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 export const usePostsInfinite = (cat: string) => {
@@ -29,7 +30,9 @@ export const usePostsInfinite = (cat: string) => {
     },
   });
 
-  const posts = data?.pages.flatMap((page) => page.data);
+  const posts: PostType[] | undefined = data?.pages.flatMap(
+    (page) => page.data
+  );
 
   return {
     data,

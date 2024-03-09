@@ -1,4 +1,5 @@
 import myAxios from "@/config/axiosConfig";
+import { createFormDataPost } from "@/helpers/formData";
 import { postSchema } from "@/schema";
 import { ErrorType } from "@/types/Response";
 import { useMutation } from "@tanstack/react-query";
@@ -8,15 +9,27 @@ import { z } from "zod";
 
 interface Props {
   reset: () => void;
-  refetch: () => void;
   navigate: NavigateFunction;
+  isActiveTags: Record<string, boolean>;
+  refetch: () => void;
 }
 
-export const usePostMutation = ({ reset, refetch, navigate }: Props) => {
+export const usePostMutation = ({
+  reset,
+  navigate,
+  isActiveTags,
+  refetch,
+}: Props) => {
   const { mutate, isPending } = useMutation({
     mutationKey: ["add-post"],
     mutationFn: async (data: z.infer<typeof postSchema>) => {
-      const { data: res } = await myAxios.post("/posts", data);
+      const formData = createFormDataPost(data, isActiveTags);
+
+      const { data: res } = await myAxios.post("/posts", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return res;
     },
     onError: (error: ErrorType) => {
@@ -24,8 +37,8 @@ export const usePostMutation = ({ reset, refetch, navigate }: Props) => {
       reset();
     },
     onSuccess: (data) => {
-      console.log(data);
-      toast.success("Succesfully added post");
+      toast.success(data.message);
+
       refetch();
       navigate("/");
     },

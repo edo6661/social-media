@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useParams } from "react-router-dom";
 import PostCard from "./PostCard";
 import { usePostsInfinite } from "@/hooks/usePostsInfinite";
@@ -35,7 +34,7 @@ const PostsCard = () => {
       return;
     }
     throttledNextPage();
-  }, [inView, isFetchingNextPage, isFetching]);
+  }, [inView, isFetchingNextPage, isFetching, throttledNextPage]);
 
   const skeletonCard = <PostsCardSKeleton length={1} />;
 

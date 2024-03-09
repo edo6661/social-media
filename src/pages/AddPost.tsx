@@ -12,10 +12,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { postSchema } from "@/schema";
 import { initialPostValues } from "@/constant";
-import myAxios from "@/config/axiosConfig";
 import {
   Select,
   SelectContent,
@@ -27,8 +25,9 @@ import { Link, useNavigate } from "react-router-dom";
 import useInterests from "@/hooks/useInterest";
 import useTags from "@/hooks/useTags";
 import { useState } from "react";
+import { usePostMutation } from "@/hooks/usePostMutation";
+import CustomInput from "@/components/ui/custom/CustomInput";
 import { usePostsInfinite } from "@/hooks/usePostsInfinite";
-import { toast } from "sonner";
 
 export default function AddPost() {
   const navigate = useNavigate();
@@ -42,70 +41,46 @@ export default function AddPost() {
       ...initialPostValues,
     },
   });
+  const { mutate, isPending } = usePostMutation({
+    reset: form.reset,
+    navigate,
+    refetch,
+    isActiveTags,
+  });
 
   const onSubmit = async (data: z.infer<typeof postSchema>) => {
-    const mockData = {
-      ...data,
-      tags: Object.keys(isActiveTags).filter((key) => isActiveTags[key]),
-    };
-    console.log(mockData);
-
-    try {
-      await myAxios.post("/posts", mockData);
-      toast.success("Succesfully added post");
-      refetch();
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-    }
+    mutate(data);
   };
 
   const handleTagClick = (id: string) =>
     setIsActiveTags((prev) => ({ ...prev, [id]: !prev[id] }));
 
+  const { handleSubmit, control, setValue } = form;
+
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit)}
         className="space-y-8 max-w-2xl mx-auto"
         encType="multipart/form-data"
       >
-        <FormField
-          control={form.control}
+        <CustomInput
+          control={control}
           name="title"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Title</FormLabel>
-              <FormControl>
-                <Input placeholder="title" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display title.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
+          description="Title"
+          label="title"
+          placeholder="Title..."
         />
-
-        <FormField
-          control={form.control}
+        <CustomInput
+          control={control}
           name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Description</FormLabel>
-              <FormControl>
-                <Input placeholder="description" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display description.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
+          description="Description"
+          label="description"
+          placeholder="Description..."
         />
 
         <FormField
-          control={form.control}
+          control={control}
           name="interest"
           render={({ field }) => (
             <FormItem>
@@ -136,7 +111,7 @@ export default function AddPost() {
         <input
           type="file"
           name="images"
-          onChange={(e) => form.setValue("images", e.target.files!)}
+          onChange={(e) => setValue("images", e.target.files!)}
           multiple
         />
         {tags?.data.map((tag) => (
@@ -150,7 +125,9 @@ export default function AddPost() {
           </Button>
         ))}
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isPending}>
+          Submit
+        </Button>
       </form>
     </Form>
   );
